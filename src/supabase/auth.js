@@ -5,6 +5,7 @@ export const signInWithGoogle = async ()=>{
         provider : 'google',
         options: {
           redirectTo: 'http://example.com/auth/callback',
+          
         },
       })
       
@@ -15,3 +16,8 @@ export const signInWithGoogle = async ()=>{
       }
       
 } 
+
+export const signOut = async()=>{
+  const { error } = await supabase.auth.signOut()
+
+}
