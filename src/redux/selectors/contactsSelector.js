@@ -1,0 +1,1 @@
+export const getAllContactsSelector = (state) => state.contacts.contacts

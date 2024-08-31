@@ -1,5 +1,5 @@
-import { Avatar, Box, Button, Typography } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Avatar, Button, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function LogoAndName() {
 
@@ -7,7 +7,7 @@ export default function LogoAndName() {
         src: `${process.env.PUBLIC_URL}/Logo/logo_lentilab-01.png`,
         width: 60,
         height: 60,
-        name: "Shop ảnh nổi" 
+        name: "3D Lenticular" 
     }
 
     const navigate = useNavigate()
@@ -24,7 +24,7 @@ export default function LogoAndName() {
             }
         >
             
-            <Typography variant="h4" sx={{fontWeight: "bold", textTransform:"uppercase"}}>
+            <Typography variant="h4" sx={{fontWeight: "bold", textTransform:"uppercase"}} color="primary.contrastText">
                 {logo.name}
             </Typography>
         </Button>

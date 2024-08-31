@@ -1,13 +1,10 @@
-import { Autocomplete, Box, Button, styled, TextField } from "@mui/material";
+import { Autocomplete, Box, Button, TextField } from "@mui/material";
 import { useSelector } from "react-redux";
 import { getAllProductsSelector } from "../../redux/selectors/productsSelector";
 import { useState } from "react";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { useNavigate } from "react-router-dom";
 
-const Rounded = styled(TextField)(()=>({
-    borderRadius: 50
-}))
 
 export default function SearchBar() {
 
@@ -32,9 +29,9 @@ export default function SearchBar() {
                 options={products}
                 getOptionLabel={(option)=>option.name}
                 // filterOptions={product_names}
-                sx={{ width: 300, borderRadius: 50 }}
+                sx={{ width: 300}}
                 size="small"
-                renderInput={(params) => <Rounded {...params} placeholder="Tìm kiếm sản phẩm" />}
+                renderInput={(params) => <TextField {...params} placeholder="Tìm kiếm sản phẩm" />}
                 
                 value={productSelecting}
                 onChange={(event, newValue) => {
@@ -45,9 +42,11 @@ export default function SearchBar() {
                 onInputChange={(event, newInputValue) => {
                     setProductTyping(newInputValue);
                 }}
+                
             />
             <Button variant="contained"
                     onClick={navigateToProductPage}
+                    bgcolor="secondary.main"
             >
                 <SearchOutlinedIcon fontSize="medium"/>
             </Button>

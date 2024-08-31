@@ -15,12 +15,26 @@ const routes = createBrowserRouter([
                     {
                         path: "/",
                         element: <Home/>
+                    },
+                    {
+                        path: "/:userId/user-information",
+                        children:[
+                            {
+                                path: "user-information"
+                            },
+                            {
+                                path: "orders"
+                            },
+                            {
+                                path: "carts"
+                            }
+                        ]
                     }
                 ]
 
             },
             {
-                path: "login",
+                path: "signin",
                 element: <SignIn/>
             }
         ]

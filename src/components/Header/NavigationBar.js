@@ -17,7 +17,7 @@ export default function NavigationBar() {
                 <Box id="nav-options" >
                     <NavigationOtps/>
                 </Box>
-                <Box>
+                <Box bgcolor="primary.contrastText" padding={0.4} borderRadius={1}>
                     <SearchBar/>
                 </Box>
                 <Box id="account-menu">
