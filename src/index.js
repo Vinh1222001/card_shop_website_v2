@@ -7,19 +7,19 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import { CssBaseline, ThemeProvider, alpha, createTheme } from '@mui/material';
 
-const violetDark = "#6C2F9F"
-const orangeDark = "#F7CC86"
+const violet = "#6C2F9F"
+const orange = "#F7CC86"
 
 const theme = createTheme({
   palette:{
     primary:{
-      main: "#6C2F9F",
+      main: violet,
       // light: alpha(violetDark, 0.1),
       // dark: violetDark,
       contrastText: "#fff"
     },
     secondary:{
-      main: "#F7CC86",
+      main: orange,
       // light: alpha(orangeDark,0.3),
       // dark:orangeDark,
       contrastText: "#fff"

@@ -4,8 +4,8 @@ import WhatshotIcon from '@mui/icons-material/Whatshot';
 import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { getAllContactsSelector } from "../../redux/selectors/contactsSelector";
-import { Email, FacebookSharp, Feed, MusicVideoSharp, Phone, YouTube } from "@mui/icons-material";
+import { getContactListSelector, getSocialMediaListSelector } from "../../redux/selectors/contactsSelector";
+import { renderIcon } from "../../common_funcs/iconFunctions";
 
 const CustomeButton = styled(Button)(({ theme }) => ({
     color: theme.palette.primary.contrastText,
@@ -15,50 +15,16 @@ const CustomeButton = styled(Button)(({ theme }) => ({
     },
 }));
 
-function renderIcon(name) {
-    let icon;
-
-    switch(name){
-        case "facebook":
-            icon = <FacebookSharp/>;
-        break;
-
-        case "tiktok":
-            icon = <MusicVideoSharp/>;
-        break;
-
-        case "youtube":
-            icon = <YouTube/>
-        break;
-
-        case "phone":
-            icon = <Phone/>
-        break;
-        
-        case "email":
-            icon = <Email/>
-        break;
-
-        default:
-            icon = <Feed/>
-        break
-    }
-
-    return icon
-}
-
 export default function NavigationOtps() {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
-    
-    const contacts = useSelector(getAllContactsSelector)
 
-    const contactList = contacts.filter((contact)=> contact.theme === "contact")
+    const contactList = useSelector(getContactListSelector)
 
-    const socialMediaList = contacts.filter((contact)=> contact.theme === "social media")
+    const socialMediaList = useSelector(getSocialMediaListSelector)
 
-    console.log({contactList, socialMediaList});
+    // console.log({contactList, socialMediaList});
 
     const handleClick = (event) => {
 
@@ -72,7 +38,7 @@ export default function NavigationOtps() {
 
     return(
         <Box display="flex">
-            
+
             <CustomeButton startIcon= {<StyleIcon fontSize="large"/>} >
                 Sản phẩm
             </CustomeButton>
