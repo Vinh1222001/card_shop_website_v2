@@ -1,13 +1,58 @@
+import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { blueGrey } from '@mui/material/colors';
+
+const violet = "#6C2F9F"
+const orange = "#F7CC86"
+
+const theme = createTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          backgroundColor: blueGrey[50],
+        }
+      }
+    }
+  },
+  palette:{
+    primary:{
+      main: violet,
+      // light: alpha(violetDark, 0.1),
+      // dark: violetDark,
+      contrastText: "#fff"
+    },
+    secondary:{
+      main: orange,
+      // light: alpha(orangeDark,0.3),
+      // dark:orangeDark,
+      contrastText: "#fff"
+    },
+    tonalOffset:{
+      light: 0.2,
+      dark: 0.7
+    },
+    // background: blueGrey[800]
+  }
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store = {store}>
+      <ThemeProvider theme={theme}>
+
+        <CssBaseline/>
+        <App />
+      </ThemeProvider>
+
+    </Provider>    
   </React.StrictMode>
 );
 

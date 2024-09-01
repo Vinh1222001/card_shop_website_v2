@@ -1,0 +1,1 @@
+export const getAllHotNewsSelector = (state) => state.hotNews.hotNews
