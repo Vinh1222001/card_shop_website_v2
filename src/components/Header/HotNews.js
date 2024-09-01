@@ -1,10 +1,7 @@
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { getAllHotNewsSelector } from "../../redux/selectors/hotNewsSelector";
 import { useEffect, useState } from "react";
-
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 export default function HotNews() {
 

@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import { getAllProductsSelector } from "../../redux/selectors/productsSelector";
 import { useState } from "react";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { ROUTE_LIST, routeBuilder } from "../../routes/routeBuilder";
 
 
 export default function SearchBar() {
@@ -13,12 +14,31 @@ export default function SearchBar() {
 
     const navigate = useNavigate()
     const products = useSelector(getAllProductsSelector)
+    const [searchParam, setSearhParam] = useSearchParams()
 
+    const env = process.env
+
+    // console.log(productTyping);
     const navigateToProductPage = () =>{
         if(productSelecting){
-            navigate(`product/${productSelecting.id}`)
+
+            const url = routeBuilder(ROUTE_LIST.SINGLE_PRODUCT, productSelecting.id)
+
+            navigate(url)
         }else{
-            navigate("product/list")
+
+            if(!searchParam.has('search')){
+                searchParam.set("search", "")
+                
+            }
+
+            searchParam.set("search", productTyping)
+            setSearhParam(searchParam)
+
+            navigate({
+                pathname: routeBuilder(ROUTE_LIST.PRODUCTS_LIST),
+                search: searchParam.toString()
+            })
         }
     }
 
@@ -26,6 +46,7 @@ export default function SearchBar() {
         <Box display="flex">
             <Autocomplete
                 disablePortal
+                clearOnBlur={false}
                 options={products}
                 getOptionLabel={(option)=>option.name}
                 // filterOptions={product_names}
@@ -35,11 +56,13 @@ export default function SearchBar() {
                 
                 value={productSelecting}
                 onChange={(event, newValue) => {
+                    
                     setProductSelecting(newValue);
                 }}
 
                 inputValue={productTyping}
                 onInputChange={(event, newInputValue) => {
+                    
                     setProductTyping(newInputValue);
                 }}
                 

@@ -3,6 +3,8 @@ import { userSelector } from "../../redux/selectors/authSelector"
 import { Avatar, Box, Button, Menu, MenuItem, Typography, styled } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {signOut} from "../../supabase/auth"
+import { ROUTE_LIST, routeBuilder } from "../../routes/routeBuilder";
 
 const CustomeButton = styled(Button)(({ theme }) => ({
     color: theme.palette.primary.contrastText,
@@ -25,12 +27,42 @@ export default function AccountMenu() {
 
             setAnchorEl(event.currentTarget);
         }else{
-            navigate("/signin")
+            navigate(routeBuilder(ROUTE_LIST.SIGNIN))
         }
     };
+
+
+    
     const handleClose = () => {
-      setAnchorEl(null);
+        setAnchorEl(null);
     };
+
+    const handleNavigate = (url) =>{
+        handleClose()
+
+        navigate(url)
+    }
+
+    const handleNavigateToUserInfo = () =>{
+        
+        const url = routeBuilder( ROUTE_LIST.USER_INFO, userInfo.user.id)
+
+        handleNavigate(url)
+    }
+
+    const handleNavigateToUserOrders = () =>{
+
+        const url = routeBuilder(ROUTE_LIST.USER_OREDERS, userInfo.user.id)
+
+        handleNavigate(url)
+    }
+
+    const handleSignOut = () =>{
+        signOut();
+        handleNavigate(process.env.REACT_APP_HOME_URL)
+        
+    }
+    
     return(
         <Box>
             <CustomeButton variant="text" 
@@ -61,10 +93,10 @@ export default function AccountMenu() {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem onClick={handleClose}>Thông tin cá nhân</MenuItem>
+                <MenuItem onClick={handleNavigateToUserInfo}>Thông tin cá nhân</MenuItem>
                 {/* <MenuItem onClick={handleClose}>Giỏ hàng</MenuItem> */}
-                <MenuItem onClick={handleClose}>Đơn hàng</MenuItem>
-                <MenuItem onClick={handleClose}>Đăng xuất</MenuItem>
+                <MenuItem onClick={handleNavigateToUserOrders}>Đơn hàng</MenuItem>
+                <MenuItem onClick={handleSignOut}>Đăng xuất</MenuItem>
             </Menu>
         </Box>
     )

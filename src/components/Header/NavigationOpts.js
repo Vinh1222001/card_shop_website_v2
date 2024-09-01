@@ -6,6 +6,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getContactListSelector, getSocialMediaListSelector } from "../../redux/selectors/contactsSelector";
 import { renderIcon } from "../../common_funcs/iconFunctions";
+import { ROUTE_LIST, routeBuilder } from "../../routes/routeBuilder";
+import { useNavigate } from "react-router-dom";
 
 const CustomeButton = styled(Button)(({ theme }) => ({
     color: theme.palette.primary.contrastText,
@@ -28,22 +30,35 @@ export default function NavigationOtps() {
 
     const handleClick = (event) => {
 
-            setAnchorEl(event.currentTarget);
+        setAnchorEl(event.currentTarget);
     };
 
     const handleClose = () => {
-      setAnchorEl(null);
+        setAnchorEl(null);
     };
+
+    const navigate = useNavigate()
+
+    const handleNavigate = (url) =>{
+        
+        navigate(url)
+    }
 
 
     return(
         <Box display="flex">
 
-            <CustomeButton startIcon= {<StyleIcon fontSize="large"/>} >
+            <CustomeButton 
+                startIcon= {<StyleIcon fontSize="large"/>}
+                onClick={()=> handleNavigate(routeBuilder(ROUTE_LIST.PRODUCTS_LIST))}
+            >
                 Sản phẩm
             </CustomeButton>
 
-            <CustomeButton startIcon={<WhatshotIcon fontSize="large"/>} >
+            <CustomeButton 
+                startIcon={<WhatshotIcon fontSize="large"/>}
+                onClick={()=> handleNavigate(routeBuilder(ROUTE_LIST.HOT_PRODUCTS))}
+            >
                 Sản phẩm hot
             </CustomeButton>
 
@@ -83,14 +98,15 @@ export default function NavigationOtps() {
                     {
                         socialMediaList.map((contact, index)=>(
                             <MenuItem key={`social-media-${index}`} onClick={handleClose}>
-                                <Link   href={contact.link} 
-                                        underline="hover" 
-                                        display="flex" 
-                                        gap={1} 
-                                        alignItems="center" 
-                                        color="black"
-                                        target="_blank"
-                                        rel="noopener"
+                                <Link   
+                                    href={contact.link} 
+                                    underline="hover" 
+                                    display="flex" 
+                                    gap={1} 
+                                    alignItems="center" 
+                                    color="black"
+                                    target="_blank"
+                                    rel="noopener"
                                 >
                                     {renderIcon(contact.name)}
                                     {contact.name}

@@ -64,6 +64,7 @@ supabase.auth.onAuthStateChange((event, session) => {
       )
 
       store.dispatch(userSlice.actions.setUserInfo(defaultPersistAuth.state))
+
       
     } else if (event === 'PASSWORD_RECOVERY') {
       // handle password recovery event

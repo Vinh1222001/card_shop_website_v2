@@ -5,12 +5,22 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import { CssBaseline, ThemeProvider, alpha, createTheme } from '@mui/material';
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { blueGrey } from '@mui/material/colors';
 
 const violet = "#6C2F9F"
 const orange = "#F7CC86"
 
 const theme = createTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          backgroundColor: blueGrey[50],
+        }
+      }
+    }
+  },
   palette:{
     primary:{
       main: violet,
@@ -27,7 +37,8 @@ const theme = createTheme({
     tonalOffset:{
       light: 0.2,
       dark: 0.7
-    }
+    },
+    // background: blueGrey[800]
   }
 })
 

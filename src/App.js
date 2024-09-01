@@ -14,7 +14,7 @@ export default function App() {
     dispatch(fetchAllProducts())   
     dispatch(fetchAllHotNews())
     dispatch(fetchAllContacts())
-  }, [])
+  }, [dispatch])
 
   return (
     <RouterProvider router={routes}/>

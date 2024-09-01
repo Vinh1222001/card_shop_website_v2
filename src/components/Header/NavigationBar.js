@@ -6,8 +6,6 @@ import SearchBar from "./SearchBar";
 
 export default function NavigationBar() {
 
-    
-
     return(
         <Box>
             <Grid2 display="flex" justifyContent="space-between" alignItems="center" container>

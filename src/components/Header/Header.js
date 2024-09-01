@@ -1,30 +1,31 @@
-import { Box, Stack, styled } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import NavigationBar from "./NavigationBar";
 import HotNews from "./HotNews";
 import { blueGrey } from "@mui/material/colors";
+import Breadcrumb from "./Breadcrumb";
 
-const Item = styled(Box)(() => ({
-    // backgroundColor: '#fff',
-    paddingInline: "10% 10%"
-}));  
-
-export default function Header() {
+export default function Header({globalPaddingX}) {
 
     // console.log(userInfo);
     
     return(
-        <header>
-            <Box sx={{width:"100%"}}>
-                <Stack>
-                    <Item bgcolor="primary.main" paddingBlock={1}>
-                        <NavigationBar/>
-                    </Item>
-                    <Item bgcolor={blueGrey[50]} paddingBlock={1}>
-                        <HotNews/>
-                    </Item>
-                </Stack>
+
+        <Stack>
+
+            <Box paddingBlock={1} paddingInline={globalPaddingX} bgcolor="primary.main">
+                <NavigationBar/>
             </Box>
 
-        </header>
+            <Box bgcolor={blueGrey[100]} paddingBlock={1}>
+                <HotNews/>
+            </Box>
+
+            <Box paddingInline={globalPaddingX} paddingBlock={1}>
+                <Breadcrumb/>
+            </Box>
+
+        </Stack>
+
+
     )
 }

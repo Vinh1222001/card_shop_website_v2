@@ -13,7 +13,7 @@ export default function LogoAndName() {
     const navigate = useNavigate()
 
     const handleNavigateToHome = ()=>{
-        navigate("/")
+        navigate(process.env.REACT_APP_HOME_URL)
     }
 
     return(
