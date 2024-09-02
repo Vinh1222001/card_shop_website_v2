@@ -20,7 +20,7 @@ export default function Header({globalPaddingX}) {
                 <HotNews/>
             </Box>
 
-            <Box paddingInline={globalPaddingX} paddingBlock={1}>
+            <Box paddingInline={globalPaddingX}>
                 <Breadcrumb/>
             </Box>
 

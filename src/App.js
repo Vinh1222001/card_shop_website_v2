@@ -5,6 +5,7 @@ import { useDispatch} from "react-redux";
 import { fetchAllProducts } from "./redux/slices/productSlice";
 import { fetchAllHotNews } from "./redux/slices/hotNewsSlice";
 import { fetchAllContacts } from "./redux/slices/contactsSlice";
+import { fetchAllBannerSlides } from "./redux/slices/bannerSlidesSlice";
 
 export default function App() {
 
@@ -14,6 +15,7 @@ export default function App() {
     dispatch(fetchAllProducts())   
     dispatch(fetchAllHotNews())
     dispatch(fetchAllContacts())
+    dispatch(fetchAllBannerSlides())
   }, [dispatch])
 
   return (

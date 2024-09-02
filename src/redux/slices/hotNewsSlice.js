@@ -1,11 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getAllHotNews } from "../../supabase/hotNews";
+import { COMMON_STATUSES } from "./commonStatuses";
 
 export const HOT_NEWS_MIDDLEWARE_STATUSES = {
-    PENDING: "pending",
-    FULFILLED: "fulfilled",
-    REJECT: "rejected",
-    IDLE: "idle"
+    ...COMMON_STATUSES
 }
 
 const hotNewsSlice = createSlice({

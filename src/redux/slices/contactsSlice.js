@@ -1,11 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { getAllContacts } from "../../supabase/contacts"
+import { COMMON_STATUSES } from "./commonStatuses"
 
 export const CONTACTS_MIDDLEWARE_STATUSES = {
-    PENDING: "pending",
-    FULFILLED: "fulfilled",
-    REJECT: "rejected",
-    IDLE: "idle"
+    ...COMMON_STATUSES
 }
 
 const contactsSlice = createSlice({

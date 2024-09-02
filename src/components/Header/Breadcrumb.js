@@ -10,11 +10,11 @@ export default function Breadcrumb() {
                 .map((match) => match.handle.crumb(match.pathname, match.data?.name))
     
     // console.log(crumbs);
-    
-    return(
 
+    return(
+        
         <Breadcrumbs separator="›" aria-label="breadcrumb">
-            {crumbs}
+            {crumbs.length>1 ? crumbs : ''}
         </Breadcrumbs>
 
     )

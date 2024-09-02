@@ -1,0 +1,1 @@
+export const getAllImagesSelector = (state) => state.images.images 

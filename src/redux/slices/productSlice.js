@@ -1,11 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getAllProducts } from "../../supabase/products";
+import { COMMON_STATUSES } from "./commonStatuses";
 
 export const PRODUCTS_MIDDLEWARE_STATUSES = {
-    PENDING: "pending",
-    FULFILLED: "fulfilled",
-    REJECT: "rejected",
-    IDLE: "idle"
+    ...COMMON_STATUSES
 }
 
 const productSlice = createSlice({

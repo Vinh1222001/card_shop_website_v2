@@ -34,7 +34,7 @@ export default function HotNews() {
 
         }, timeout);
 
-        return ()=> setTimeout(hotNewSlider)
+        return ()=> clearTimeout(hotNewSlider)
     }, [hotNewsIndex, hotNews])
     
     // console.log(hotNewsIndex)

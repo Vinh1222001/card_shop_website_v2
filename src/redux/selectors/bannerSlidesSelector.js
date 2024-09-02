@@ -1,0 +1,1 @@
+export const bannerSlidesSelector = (state) => state.bannerSlides.bannerSlides

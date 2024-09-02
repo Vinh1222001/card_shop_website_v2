@@ -14,9 +14,9 @@ export default function MainLayout() {
                 <Header globalPaddingX={globalPaddingX}/>
 
             </header>
-            <Box paddingBlock={2} paddingInline={globalPaddingX}>
+            <Box>
 
-                <Outlet/>
+                <Outlet context={globalPaddingX}/>
             </Box>
             <footer>
 
