@@ -41,12 +41,13 @@ const ID_ROUTES_LIST = [
 
 export const routeBuilder = (route, id ="")=>{
 
-
+    // console.log(route, id);
+    
     if(ID_ROUTES_LIST.includes(route,0)){
         return ROUTES[route].replace(":id", id)
     }
 
-    console.log(env.RACT_APP_HOT_PRODUCTS_URL);
+    // console.log(env.RACT_APP_HOT_PRODUCTS_URL);
     
 
     return ROUTES[route]

@@ -1,4 +1,4 @@
-export default function SingleColumnProductList() {
+export default function VerticalProductList() {
     
 
     return(

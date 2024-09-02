@@ -1,5 +1,5 @@
 import { crumbCreator } from "../common_funcs/crumbCreator"
-import SingleColumnProductList from "../components/ProductList.js/SingleColumnProductList"
+import VerticalProductList from "../components/ProductList/VerticalProductList"
 import ProductsLayout from "../pages/layout/ProductsLayout"
 
 export const productRoutes = {
@@ -29,7 +29,7 @@ export const productRoutes = {
         {
             path: `${process.env.REACT_APP_SIMILAR_PRODUCTS_URL}`,
             handle: crumbCreator(),
-            element: <SingleColumnProductList/>,
+            element: <VerticalProductList/>,
             loader: ()=>{
                 
                 return{

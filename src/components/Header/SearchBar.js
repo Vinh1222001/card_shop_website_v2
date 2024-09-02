@@ -15,10 +15,7 @@ export default function SearchBar() {
     const navigate = useNavigate()
     const products = useSelector(getAllProductsSelector)
     const [searchParam, setSearhParam] = useSearchParams()
-
-    const env = process.env
-
-    // console.log(productTyping);
+    // console.log(products);
     const navigateToProductPage = () =>{
         if(productSelecting){
 

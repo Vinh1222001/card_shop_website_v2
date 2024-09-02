@@ -5,11 +5,13 @@ import hotNewsSlice from "./slices/hotNewsSlice";
 import contactsSlice from "./slices/contactsSlice";
 import bannerSlidesSlice from "./slices/bannerSlidesSlice";
 import imagesSlice from "./slices/imagesSlice";
+import hotProductsSlice from "./slices/hotProductsSlice";
 
 const store = configureStore({
     reducer:{
         user:           userSlice.reducer,
         products:       productSlice.reducer,
+        hotProducts:    hotProductsSlice.reducer,
         hotNews :       hotNewsSlice.reducer,
         contacts:       contactsSlice.reducer,
         bannerSlides:   bannerSlidesSlice.reducer,

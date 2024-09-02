@@ -1,0 +1,1 @@
+export const getAllHotProductsSelector = (state) => state.hotProducts.hotProducts.map((products)=> products.products)

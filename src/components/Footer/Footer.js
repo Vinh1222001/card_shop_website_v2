@@ -77,7 +77,8 @@ export default function Footer({globalPaddingX}) {
                     color: "primary.contrastText", 
                     paddingBlock: globalPaddingY,
                     display: "flex",
-                    gap: "1em"
+                    gap: "1em",
+                    marginTop: 5
                 }}
         >
 
