@@ -1,47 +1,37 @@
-import { Button, Divider, Grid2, Pagination, Stack, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Divider, Grid2, Stack } from "@mui/material";
 import ProductCard from "./ProductCard";
-
+import ListTitle from "./ListTitle"
+import CustomePagination from "../common_component/CustomPagination";
+import { useState } from "react";
 
 export default function TableProductList({
     productList,
     icon,
     title,
     link,
+    productsOnPage = 12,
+    pagination = false
 }) {
 
-    const navigate = useNavigate()
+    // console.log(page); 
+    const [page, setPage] = useState(1)
 
     return(
         <Stack>
-            <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"} padding={1}>
-                <Stack direction={"row"} alignItems={"center"} >
-                    
-                    {icon}
-                    <Typography variant="h5" fontWeight={"bold"}>
-                        {title}
-                    </Typography>
-                </Stack>
-                <Stack>
-                    <Button 
-                        onClick={
-                            ()=> navigate(link)
-                        }
-                        size="small"
-                    >
-                        Xem tất cả
-                    </Button>
-                </Stack>
-            </Stack>
+            <ListTitle
+                icon={icon}
+                title={title}
+                link={link}
+            />
 
             <Divider/>
-            <Stack alignItems={"center"} gap={2} paddingBottom={1}>
+            <Stack alignItems={"center"} gap={2} padding={1}>
 
-                <Grid2 container sx={{justifyContent: "space-between"}} spacing={1.5}>
+                <Grid2 container spacing={1.5}>
 
-                    {productList.map((product, index)=>{
+                    {productList.slice((page-1)*productsOnPage, page*productsOnPage).map((product, index)=>{
                         return (
-                            <Grid2 item key={`product-card-${index}`} size={3}>
+                            <Grid2  key={`product-card-${index}`} size={3}>
 
                                 <ProductCard product={product} sx={{height: "100%"}}/>
                             </Grid2>
@@ -51,7 +41,16 @@ export default function TableProductList({
 
                 </Grid2>
 
-                <Pagination count={Math.ceil( productList.length/10)}/>
+                {
+                    pagination?
+                        <CustomePagination
+                            count={Math.ceil( productList.length/productsOnPage)}
+                            page={page}
+                            handleSetPage={setPage}
+                        />
+                    :""
+                }
+                
             </Stack>
         </Stack>
     )

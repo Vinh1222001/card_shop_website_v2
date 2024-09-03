@@ -105,7 +105,7 @@ export default function Footer({globalPaddingX}) {
             <Divider sx={{backgroundColor: "primary.light"}}/>
             <Box paddingInline={globalPaddingX}>
                 <Grid2 container spacing={2}>
-                    <Grid2 item size={4}>
+                    <Grid2  size={4}>
                         <Stack
                             direction={"column"}
                             gap={1}
@@ -129,7 +129,7 @@ export default function Footer({globalPaddingX}) {
                         </Stack>
                     </Grid2>
 
-                    <Grid2 item size={4}>
+                    <Grid2  size={4}>
                         <Stack
                             direction={"column"}
                             gap={1}
@@ -148,7 +148,7 @@ export default function Footer({globalPaddingX}) {
                                                 alt={imageLink.alt} 
                                                 loading="lazy"
                                                 style={{
-                                                    width: 100+"%"
+                                                    width: "100%"
                                                 }}
                                             ></img>
                                         </Box>
@@ -158,7 +158,7 @@ export default function Footer({globalPaddingX}) {
                         </Stack>
                     </Grid2>
 
-                    <Grid2 item size={4}>
+                    <Grid2  size={4}>
                         <Stack
                             direction={"column"}
                             gap={1}
@@ -187,7 +187,7 @@ export default function Footer({globalPaddingX}) {
                         </Stack>
                     </Grid2>
 
-                    <Grid2 item size={4}>
+                    <Grid2  size={4}>
                         <Stack
                             direction={"column"}
                             gap={1}
@@ -211,7 +211,7 @@ export default function Footer({globalPaddingX}) {
                         </Stack>
                     </Grid2>
 
-                    <Grid2 item size={4}>
+                    <Grid2  size={4}>
                         <Stack 
                             direction={"column"}
                             gap={1}
@@ -236,7 +236,7 @@ export default function Footer({globalPaddingX}) {
                         </Stack>
                     </Grid2>
 
-                    <Grid2 item size={4}>
+                    <Grid2  size={4}>
                         <Stack
                             direction={"column"}
                             gap={1}

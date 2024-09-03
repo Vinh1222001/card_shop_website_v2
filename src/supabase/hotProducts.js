@@ -13,6 +13,7 @@ export const getAllHotProducts = async () => {
             material,
             effect,
             size,
+            price,
             images!products_avatarId_fkey(
                 imgSrc
             )

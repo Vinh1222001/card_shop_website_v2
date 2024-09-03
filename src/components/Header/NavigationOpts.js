@@ -1,13 +1,14 @@
-import { Box, Button, Divider, Link, Menu, MenuItem, styled } from "@mui/material";
-import StyleIcon from '@mui/icons-material/Style';
-import WhatshotIcon from '@mui/icons-material/Whatshot';
-import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
+import { Box, Button, Divider, Link, Menu, MenuItem, Stack, styled } from "@mui/material";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getContactListSelector, getSocialMediaListSelector } from "../../redux/selectors/contactsSelector";
 import { renderIcon } from "../../common_funcs/iconFunctions";
 import { ROUTE_LIST, routeBuilder } from "../../routes/routeBuilder";
 import { useNavigate } from "react-router-dom";
+import StyleIcon from '@mui/icons-material/Style';
+import WhatshotIcon from '@mui/icons-material/Whatshot';
+import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
+import FiberNewIcon from '@mui/icons-material/FiberNew';
 
 const CustomeButton = styled(Button)(({ theme }) => ({
     color: theme.palette.primary.contrastText,
@@ -46,7 +47,7 @@ export default function NavigationOtps() {
 
 
     return(
-        <Box display="flex">
+        <Stack gap={1} direction={"row"}>
 
             <CustomeButton 
                 startIcon= {<StyleIcon fontSize="large"/>}
@@ -60,6 +61,13 @@ export default function NavigationOtps() {
                 onClick={()=> handleNavigate(routeBuilder(ROUTE_LIST.HOT_PRODUCTS))}
             >
                 Sản phẩm hot
+            </CustomeButton>
+
+            <CustomeButton 
+                startIcon={<FiberNewIcon fontSize="large"/>}
+                onClick={()=> handleNavigate(routeBuilder(ROUTE_LIST.NEW_PRODUCTS))}
+            >
+                Sản phẩm mới
             </CustomeButton>
 
             <Box >
@@ -117,6 +125,6 @@ export default function NavigationOtps() {
                     
                 </Menu>
             </Box>
-        </Box>
+        </Stack>
     )
 }

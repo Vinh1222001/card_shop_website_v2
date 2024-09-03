@@ -1,7 +1,6 @@
-import { Button, Divider, Stack, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Divider, Stack } from "@mui/material";
 import ProductCard from "./ProductCard";
-
+import ListTitle from "./ListTitle"
 
 export default function HorizontalProductList({
     productList,
@@ -10,43 +9,30 @@ export default function HorizontalProductList({
     link,
 }) {
 
-    const navigate = useNavigate()
 
     return(
         <Stack>
-        
-            <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"} padding={1}>
-                <Stack direction={"row"} alignItems={"center"} >
-                    
-                    {icon}
-                    <Typography variant="h5" fontWeight={"bold"}>
-                        {title}
-                    </Typography>
-                </Stack>
-                <Stack>
-                    <Button 
-                        onClick={
-                            ()=> navigate(link)
-                        }
-                        size="small"
-                    >
-                        Xem tất cả
-                    </Button>
-                </Stack>
-            </Stack>
+            <ListTitle
+                icon={icon}
+                title={title}
+                link={link}
+            />
 
             <Divider/>
 
-            <Stack overflow={"auto"} sx={{minHeight: "400px"}}>
+            <Stack padding={1} overflow={"hidden"}>
 
-                <Stack direction={"row"} width={"fit-content"} spacing={1}>
-                    {productList.map((product, index)=>{
-                        return (
+                <Stack overflow={"auto"} sx={{minHeight: "400px"}} >
 
-                            <ProductCard product={product} key={`product-card-${index}`}/>
-                            
-                        )
-                    })}
+                    <Stack direction={"row"} width={"fit-content"} spacing={1}>
+                        {productList.map((product, index)=>{
+                            return (
+
+                                <ProductCard product={product} key={`product-card-${index}`}/>
+                                
+                            )
+                        })}
+                    </Stack>
                 </Stack>
             </Stack>
         </Stack>

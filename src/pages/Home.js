@@ -62,8 +62,10 @@ export default function Home(){
                     <TableProductList
                         productList={releasedProductList}
                         icon={<BallotIcon/>}
-                        title={"Tất cả sản phẩm"}
+                        title={"Sản phẩm tiêu biểu"}
+                        productsOnPage={12}
                         link = {routeBuilder(ROUTE_LIST.PRODUCTS_LIST)}
+                        pagination={false}
                     />
                 </Box>
             </Stack>

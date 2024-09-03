@@ -47,7 +47,7 @@ export default function SearchBar() {
                 options={products}
                 getOptionLabel={(option)=>option.name}
                 // filterOptions={product_names}
-                sx={{ width: 300}}
+                sx={{ width: 200}}
                 size="small"
                 renderInput={(params) => <TextField {...params} placeholder="Tìm kiếm sản phẩm" />}
                 

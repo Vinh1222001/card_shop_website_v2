@@ -79,6 +79,11 @@ export default function ProductCard({
                             titile="Kích thước"
                         />
 
+                        <DisplayOptionComponent
+                            data={product}
+                            attribute="price"
+                            titile="Giá thấp nhất ($)"
+                        />
 
                     </Stack>
                 </CardContent>

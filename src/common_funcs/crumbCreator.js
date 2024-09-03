@@ -1,8 +1,12 @@
-import { Link } from "react-router-dom"
 
 export const crumbCreator=()=>{
     return {
 
-        crumb: (routeSeg, pageName)=> <Link to={routeSeg}>{pageName}</Link>
+        crumb: (routeSeg, pageName)=> {
+            return {
+                routeSegment: routeSeg,
+                routeName: pageName
+            }
+        }
     }
 }
