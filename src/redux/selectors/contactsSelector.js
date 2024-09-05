@@ -1,9 +1,9 @@
 import { createSelector } from "@reduxjs/toolkit"
 
-export const getAllContactsSelector = (state) => state.contacts.contacts
+const getAllContacts = (state) => state.contacts.contacts
 
 export const getContactListSelector = createSelector(
-    getAllContactsSelector,
+    getAllContacts,
     (shopInfo)=>{
         const socialMediaList = shopInfo.filter((info) => info.theme === "contact")
         return socialMediaList
@@ -12,7 +12,7 @@ export const getContactListSelector = createSelector(
 )
 
 export const getSocialMediaListSelector = createSelector(
-    getAllContactsSelector,
+    getAllContacts,
     (shopInfo)=>{
         const socialMediaList = shopInfo.filter((info) => info.theme === "social media")
         return socialMediaList
@@ -21,7 +21,7 @@ export const getSocialMediaListSelector = createSelector(
 )
 
 export const getServiceListSelector = createSelector(
-    getAllContactsSelector,
+    getAllContacts,
     (shopInfo)=>{
         const socialMediaList = shopInfo.filter((info) => info.theme === "service")
         return socialMediaList
@@ -30,7 +30,7 @@ export const getServiceListSelector = createSelector(
 )
 
 export const getStoreInfoListSelector = createSelector(
-    getAllContactsSelector,
+    getAllContacts,
     (shopInfo)=>{
         const socialMediaList = shopInfo.filter((info) => info.theme === "store infor")
         return socialMediaList

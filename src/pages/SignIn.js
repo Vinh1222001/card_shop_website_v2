@@ -1,13 +1,20 @@
-import { signInWithGoogle, signOut } from "../supabase/auth"
+import { useDispatch } from "react-redux";
+import { signInWithFacebook, signInWithGoogle, signOutUser } from "../redux/slices/userSlice";
 
 export default function SignIn(){
 
+    const dispatch = useDispatch()
+
     const handleSignInWithGG = ()=>{
-        signInWithGoogle();
+        dispatch(signInWithGoogle())
+    }
+
+    const handleSignInWithFB = ()=>{
+        dispatch(signInWithFacebook())
     }
 
     const handleSignOut = ()=>{
-        signOut();
+        dispatch(signOutUser())
     }
 
     return(
@@ -15,6 +22,9 @@ export default function SignIn(){
             <div>
                 <button onClick={handleSignInWithGG}>
                     Login with GG
+                </button>
+                <button onClick={handleSignInWithFB}>
+                    Login with FB
                 </button>
                 <button onClick={handleSignOut}>
                     Logout

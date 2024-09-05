@@ -1,7 +1,7 @@
 import { Avatar, Box, Divider, Grid2, Link, Stack, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { getContactListSelector, getServiceListSelector, getSocialMediaListSelector, getStoreInfoListSelector } from "../../redux/selectors/contactsSelector";
-import { renderIcon } from "../../common_funcs/iconFunctions";
+import { renderIcon } from "../../commonFunctions/iconFunctions";
 
 const titileStyle = {
     variant: "h6",
@@ -77,8 +77,7 @@ export default function Footer({globalPaddingX}) {
                     color: "primary.contrastText", 
                     paddingBlock: globalPaddingY,
                     display: "flex",
-                    gap: "1em",
-                    marginTop: 5
+                    gap: "1em"
                 }}
         >
 

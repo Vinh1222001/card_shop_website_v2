@@ -1,32 +1,60 @@
 import supabase from "./init";
 
-export const signInWithGoogle = async ()=>{
-    const { data, error } = await supabase.auth.signInWithOAuth({
-        provider : 'google',
-        options: {
-          redirectTo: 'http://localhost:3000',
-          
-        },
-      })
-      
-      if (data.url) {
-        console.log(data);
+const checkError = (data, error) =>{
+  if (data) {
+    // console.log(data);
+    return data
+
+  }else{
+    // console.log(error);
+    return error
+  }
+}
+
+export const PROVIDER_LIST = {
+  FACEBOOK: "facebook",
+  GOOGLE:   "google"
+}
+
+export const signInWithThirdProvider = async (providerName)=>{
+  const { data, error } = await supabase.auth.signInWithOAuth({
+      provider : providerName,
+      options: {
+        redirectTo: 'http://localhost:3000',
         
-        // redirect(data.url) // use the redirect API for your server framework
-      }else{
-        console.log(error);
-        
-      }
+      },
+    })
+    
+  return checkError(data, error)
       
 } 
 
+
+export const signIn = async (userEmail, userPassword) =>{
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: userEmail,
+    password: userPassword,
+  })
+
+  return checkError(data, error)
+}
+
+export const signUp = async (userEmail, userPassword) =>{
+  const { data, error } = await supabase.auth.signUp({
+    email: userEmail,
+    password: userPassword,
+  })
+
+  return checkError(data, error)
+}
+
 export const signOut = async()=>{
-  const { error } = await supabase.auth.signOut({
+  const { data, error } = await supabase.auth.signOut({
     options:{
       redirectTo: 'http://localhost:3000'
     }
   })
 
-  console.log(error);
+  return checkError(data, error)
 
 }

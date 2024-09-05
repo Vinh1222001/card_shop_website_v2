@@ -1,6 +1,6 @@
 import { Autocomplete, Box, Button, TextField } from "@mui/material";
 import { useSelector } from "react-redux";
-import { getAllProductsSelector } from "../../redux/selectors/productsSelector";
+import { getAllReleasedProductsSelector } from "../../redux/selectors/productsSelector";
 import { useState } from "react";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -13,7 +13,7 @@ export default function SearchBar() {
     const [productTyping, setProductTyping] = useState('')
 
     const navigate = useNavigate()
-    const products = useSelector(getAllProductsSelector)
+    const products = useSelector(getAllReleasedProductsSelector)
     const [searchParam, setSearhParam] = useSearchParams()
     // console.log(products);
     const navigateToProductPage = () =>{
@@ -67,6 +67,7 @@ export default function SearchBar() {
             <Button variant="contained"
                     onClick={navigateToProductPage}
                     bgcolor="secondary.main"
+                    disabled={!(productSelecting || productTyping)}
             >
                 <SearchOutlinedIcon fontSize="medium"/>
             </Button>

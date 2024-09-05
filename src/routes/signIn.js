@@ -1,4 +1,4 @@
-import { crumbCreator } from "../common_funcs/crumbCreator"
+import { crumbCreator } from "../commonFunctions/crumbCreator"
 import SignIn from "../pages/SignIn"
 
 export const signInRoutes = {

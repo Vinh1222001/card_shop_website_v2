@@ -4,7 +4,7 @@ import Home from "../pages/Home";
 import Root from "../pages/Root";
 import MainLayout from "../pages/layout/MainLayout";
 import { productRoutes } from "./products";
-import { crumbCreator } from "../common_funcs/crumbCreator";
+import { crumbCreator } from "../commonFunctions/crumbCreator";
 import { userRoutes } from "./user";
 import { signInRoutes } from "./signIn";
 

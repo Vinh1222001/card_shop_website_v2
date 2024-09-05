@@ -1,4 +1,4 @@
-import { Divider, Stack } from "@mui/material";
+import { Box, Divider, Stack } from "@mui/material";
 import ProductCard from "./ProductCard";
 import ListTitle from "./ListTitle"
 
@@ -22,13 +22,15 @@ export default function HorizontalProductList({
 
             <Stack padding={1} overflow={"hidden"}>
 
-                <Stack overflow={"auto"} sx={{minHeight: "400px"}} >
+                <Stack overflow={"auto"} sx={{minHeight: "400px"}} paddingBottom={1}>
 
-                    <Stack direction={"row"} width={"fit-content"} spacing={1}>
+                    <Stack direction={"row"} width={"fit-content"} spacing={1} alignItems={"stretch"}>
                         {productList.map((product, index)=>{
                             return (
+                                <Box key={`product-card-${index}`} minWidth={300} display={"flex"} alignItems={"stretch"}>
 
-                                <ProductCard product={product} key={`product-card-${index}`}/>
+                                    <ProductCard product={product} />
+                                </Box>
                                 
                             )
                         })}

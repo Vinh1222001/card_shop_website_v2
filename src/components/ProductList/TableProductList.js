@@ -1,7 +1,7 @@
 import { Divider, Grid2, Stack } from "@mui/material";
 import ProductCard from "./ProductCard";
 import ListTitle from "./ListTitle"
-import CustomePagination from "../common_component/CustomPagination";
+import CustomePagination from "../CustomPagination/CustomPagination";
 import { useState } from "react";
 
 export default function TableProductList({

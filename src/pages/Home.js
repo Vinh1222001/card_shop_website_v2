@@ -3,7 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getAllHotProductsSelector } from "../redux/selectors/hotProductsSelector";
 import { ROUTE_LIST, routeBuilder } from "../routes/routeBuilder";
-import { getAllProductsSelector, getNewProductsSelector } from "../redux/selectors/productsSelector";
+import { getAllReleasedProductsSelector, getNewProductsSelector } from "../redux/selectors/productsSelector";
 
 import TableProductList from "../components/ProductList/TableProductList";
 import BannerSlider from "../components/BannerSlider/BannerSlider";
@@ -19,7 +19,7 @@ export default function Home(){
 
     const newProductList = useSelector(getNewProductsSelector)  
     
-    const releasedProductList = useSelector(getAllProductsSelector) 
+    const releasedProductList = useSelector(getAllReleasedProductsSelector) 
     // console.log(releasedProductList);
     
     const globalPaddingX = useOutletContext()

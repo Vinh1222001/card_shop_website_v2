@@ -1,7 +1,12 @@
-// import { createSelector } from "@reduxjs/toolkit"
+import { createSelector } from "@reduxjs/toolkit"
 
-export const userSelector = (state) => state.user
+const getUserInfo = (state) => state.user
 
-// export const userSltor = createSelector(userSelector, (user)=>{
-//     return user
-// })
+export const getUserInfoSelector = createSelector(
+    getUserInfo, 
+    (userInfo)=>{
+        
+        const parsedUserInfo = {...userInfo}
+        
+        return parsedUserInfo
+})

@@ -45,7 +45,7 @@ export default function ProductCard({
     }
 
     return(
-        <Card sx={{ minWidth: 350, width: "100%", justifyContent: "space-between", display: "flex", flexDirection: "column", ...sx }}>
+        <Card sx={{width: "100%", justifyContent: "space-between", display: "flex", flexDirection: "column", ...sx }}>
             <Stack>
 
                 <CardMedia
@@ -53,7 +53,7 @@ export default function ProductCard({
                     image={product.images.imgSrc}
                     title={product.name}
                 />
-                <CardContent>
+                <CardContent sx={{padding:"5px", ":last-child":{paddingBottom: "0px"}}}>
                     <Typography gutterBottom variant="h5" component="div" >
                         {product.name}
                     </Typography>

@@ -1,74 +1,77 @@
-import { Box, ImageList, ImageListItem } from "@mui/material";
+import { Box,Stack, ImageList, ImageListItem } from "@mui/material";
 import { useSelector } from "react-redux";
-import { bannerSlidesSelector } from "../../redux/selectors/bannerSlidesSelector";
-import { useEffect, useState } from "react";
+import { getAllbannerSlidesSelector } from "../../redux/selectors/bannerSlidesSelector";
 import { Link } from "react-router-dom";
 import { ROUTE_LIST, routeBuilder } from "../../routes/routeBuilder";
+import { useEffect, useRef, useState } from "react";
 
 export default function BannerSlider() {
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-    window.addEventListener("resize", () => {
-        setWindowWidth(window.innerWidth);
-    });
+    let bannerSlides = useSelector(getAllbannerSlidesSelector);
 
-    const bannerSlides = useSelector(bannerSlidesSelector);
+    bannerSlides = [...bannerSlides, ...bannerSlides]
 
-    let bannerItem = document.getElementById("banner-0")?.getBoundingClientRect();
-    let bannerItemWidth = bannerItem?.width;
+    const [index, setIndex] = useState(0)
 
-    useEffect(() => {
-        let bannerIndex = 0;
-        const bannerSlider = document.getElementById("banner-slider");
+    const timeOutRef = useRef(null)
 
-        const Slider = setInterval(() => {
-            bannerIndex += 1;
-            if (bannerIndex < 0) {
-                bannerIndex = bannerSlides.length - 1;
-            }
+    function resetTimeOut() {
+        if (timeOutRef.current) {
+            clearTimeout(timeOutRef.current)
+        }
+    }
 
-            if (bannerIndex > bannerSlides?.length - 1) {
-                bannerIndex = 0;
-            }
-            // console.log(bannerIndex);
+    useEffect(()=>{
+        resetTimeOut();
 
-            if (bannerSlider) {
-                bannerSlider.style.left = -bannerIndex * bannerItemWidth + "px";
-            }
-        }, 5000);
+        timeOutRef.current = setTimeout(()=>{
+            setIndex(prevIndex => prevIndex >= bannerSlides.length - 1? 0 : prevIndex + 1)
+        }, 3000)
 
-        return () => {
-            clearInterval(Slider);
-            bannerItem = document.getElementById("banner-0")?.getBoundingClientRect();
-            bannerItemWidth = bannerItem?.width;
-        };
-    }, [bannerSlides]);
+        return ()=> resetTimeOut()
+    }, [bannerSlides.length,index])
 
     return (
-        <Box sx={{ overflow: "hidden" }}>
-            <Box
-                sx={{ position: "relative", height: "fit-content", minHeight: "450px" }}
+        <Box >
+            <Stack
+                sx={{ 
+                    position: "relative",
+                    maxWidth: "100%",
+                    overflow: "hidden",
+                    // transform: `translate3d(${-index * 100}%, 0, 0)`,
+                }}
             >
                 <ImageList
-                    id="banner-slider"
-                    sx={{
-                        width: "fit-content",
-                        minHeight: 450,
-                        height: "fit-content",
-                        margin: 0,
-                        position: "relative",
-                        left: "0",
-                        top: "0",
-                        transition: "left 1s ease",
-                        overflowY: "none",
-                    }}
+                    className="banner-slider"
                     cols={bannerSlides.length}
+                    sx={{
+                        // height: "max-content",
+                        width: `${bannerSlides.length*100}%`,
+                        // maxWidth: "100vw",
+                        // display:"flex",
+                        margin: 0,
+                        transform: `translate3d(${(-index * 100)/bannerSlides.length}%, 0, 0)`,
+                        transition: "1s ease",
+                        "::webket-scrollbar":{
+                            display: "none"
+                        },
+                        msOverflowStyle: "none",
+                        scrollbarWidth: "none",
+                    }}
                     gap={0}
                 >
                     {bannerSlides.map((item, index) => (
                         <ImageListItem
+                            className="banner-item"
                             key={`banner-${index}`}
-                            sx={{ width: windowWidth, height: "fit-content" }}
+                            sx={{ 
+                                // flex: "1 0 100%",
+                                width: "100%", 
+                                height: "max-content", 
+                                objectFit: "cover",
+                                // transform: `translate3d(${-index * 100}%, 0, 0)`,
+                                // backgroundColor: "black"
+                            }}
                             id={`banner-${index}`}
                         >
                             <Link
@@ -76,17 +79,72 @@ export default function BannerSlider() {
                             >
                                 <img
                                     srcSet={`${item.images.imgSrc}?auto=format&dpr=2 2x`}
-                                    src={`${item.images.imgSrc}?auto=format`}
+                                    src={`${item.images.imgSrc}`}
                                     alt={item.images.imgSrc}
                                     loading="lazy"
                                     width={"100%"}
-                                // style={{height: "700px"}}
                                 />
                             </Link>
                         </ImageListItem>
                     ))}
                 </ImageList>
-            </Box>
+                
+                <Box sx={{
+                    position: "absolute",
+                    left:0,
+                    bottom: "30px",
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                }}>
+
+                    <Stack 
+                        className="dots-wrapper"
+                        direction={"row"}
+                        sx={{                            
+                            minWidth: "100px",
+                            width: "max-content",
+                            justifyContent: "center",
+                            alignItems: "end",
+                            gap: 1,
+                            padding: "0.5em 2em",
+                            // Glassmorphim effect
+                            background: "rgba(255, 255, 255, 0.05)",
+                            borderRadius: "16px",
+                            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+                            backdropFilter: "blur(5px)",
+                            webkitBackdropFilter: "blur(5px)",
+                            border: "1px solid rgba(255, 255, 255, 0.3)",
+                        }}
+                    >
+                        {
+                            bannerSlides.map((dot, idx)=>(
+
+                                <Box 
+                                    className="dot"
+                                    key={`dot-${idx}`}
+                                    width={index === idx? "30px": "15px"}
+                                    sx={{
+                                        height: "15px",
+                                        borderRadius: 20,
+                                        backgroundColor: "#fff",
+                                        transition: "width ease 0.3s",
+                                        cursor: "pointer"
+                                    }}
+                                    onClick={
+                                        ()=>{
+                                            setIndex(idx)
+                                        }
+                                    }
+                                    
+                                >
+
+                                </Box>
+                            ))
+                        }
+                    </Stack>
+                </Box>
+            </Stack>
         </Box>
     );
 }

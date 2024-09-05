@@ -54,7 +54,7 @@ supabase.auth.onAuthStateChange((event, session) => {
                 
     } else if (event === 'SIGNED_IN') {
 
-        if(localStorage.getItem(localStorageList.persist_auth)===null) localStorageHandler.setItem(localStorageList.persist_auth, defaultPersistAuth); 
+      if(localStorage.getItem(localStorageList.persist_auth)===null) localStorageHandler.setItem(localStorageList.persist_auth, defaultPersistAuth); 
       
     } else if (event === 'SIGNED_OUT') {
       // handle sign out event

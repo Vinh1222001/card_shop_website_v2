@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
-import { userSelector } from "../../redux/selectors/authSelector"
-import { Avatar, Box, Button, Menu, MenuItem, Typography, styled } from "@mui/material";
+import { getUserInfoSelector } from "../../redux/selectors/authSelector"
+import { Avatar, Box, Button, Divider, Menu, MenuItem, Tooltip, Typography, styled } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {signOut} from "../../supabase/auth"
@@ -19,7 +19,8 @@ export default function AccountMenu() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     
-    const userInfo = useSelector(userSelector)
+    const userInfo = useSelector(getUserInfoSelector)
+
     const navigate = useNavigate()
     
     const handleClick = (event) => {
@@ -30,8 +31,6 @@ export default function AccountMenu() {
             navigate(routeBuilder(ROUTE_LIST.SIGNIN))
         }
     };
-
-
     
     const handleClose = () => {
         setAnchorEl(null);
@@ -66,20 +65,23 @@ export default function AccountMenu() {
     return(
         <Box>
             <CustomeButton variant="text" 
-                    endIcon={
-                        <Avatar alt={userInfo.user.name} src={userInfo.user.avatar} sx={{ width: 24, height: 24 }}/>
-                    }
                     id="account-button"
                     aria-controls={open ? 'basic-menu' : undefined}
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
                     onClick={handleClick}
             >
-
-                <Typography variant="body1" textTransform="none" color="primary.contrastText">
-                    { userInfo.isAuthenticated && `Hello ${userInfo.user.name}!` }
-                    { !userInfo.isAuthenticated && `Đăng nhập/Đăng ký`}
-                </Typography>
+                <Tooltip 
+                    title={
+                        userInfo.isAuthenticated?
+                        `Hello ${userInfo.user.name}`
+                        :"Đăng nhập/Đăng ký"
+                    } 
+                    leaveDelay={200}
+                    arrow
+                >
+                    <Avatar alt={userInfo.user.name} src={userInfo.user.avatar} sx={{ width: 40, height: 40 }}/>
+                </Tooltip>                
                 
             </CustomeButton>
             <Menu
@@ -93,6 +95,10 @@ export default function AccountMenu() {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
+                <Typography variant="body1" padding={1}>
+                    Hello {userInfo.user.name}!
+                </Typography>
+                <Divider/>
                 <MenuItem onClick={handleNavigateToUserInfo}>Thông tin cá nhân</MenuItem>
                 {/* <MenuItem onClick={handleClose}>Giỏ hàng</MenuItem> */}
                 <MenuItem onClick={handleNavigateToUserOrders}>Đơn hàng</MenuItem>

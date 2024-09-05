@@ -2,7 +2,7 @@ import UserInfo from "../pages/UserInfo";
 import UserPageLayout from "../pages/layout/UserPageLayout";
 import Orders from "../pages/Orders";
 import Carts from "../pages/Carts";
-import { crumbCreator } from "../common_funcs/crumbCreator";
+import { crumbCreator } from "../commonFunctions/crumbCreator";
 
 export const userRoutes = {
 

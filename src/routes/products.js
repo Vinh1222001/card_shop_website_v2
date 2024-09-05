@@ -1,4 +1,4 @@
-import { crumbCreator } from "../common_funcs/crumbCreator"
+import { crumbCreator } from "../commonFunctions/crumbCreator"
 import VerticalProductList from "../components/ProductList/VerticalProductList"
 import ProductsLayout from "../pages/layout/ProductsLayout"
 

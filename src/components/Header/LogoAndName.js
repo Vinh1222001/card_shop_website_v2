@@ -1,4 +1,4 @@
-import { Avatar, Button, Typography } from "@mui/material";
+import { Avatar, Button, Tooltip, Typography} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 export default function LogoAndName() {
@@ -11,22 +11,25 @@ export default function LogoAndName() {
     }
 
     const navigate = useNavigate()
-
+    
     const handleNavigateToHome = ()=>{
         navigate(process.env.REACT_APP_HOME_URL)
     }
 
     return(
-        <Button 
-            onClick={handleNavigateToHome}
-            startIcon = {
-                <Avatar src={logo.src} sx={{width:logo.width, height:logo.height}}></Avatar>
-            }
-        >
-            
-            <Typography variant="h4" sx={{fontWeight: "bold", textTransform:"uppercase"}} color="primary.contrastText">
-                {logo.name}
-            </Typography>
-        </Button>
+        <Tooltip title={logo.name} arrow>
+
+            <Button 
+                onClick={handleNavigateToHome}
+                sx={{gap: 1}}
+            >
+                <Avatar src={logo.src} sx={{width:logo.width, height:logo.height}} md={"hidden"}></Avatar>
+
+                <Typography variant="h4" sx={{fontWeight: "bold", textTransform:"uppercase"}} color="primary.contrastText">
+                    {logo.name}
+                </Typography>
+                
+            </Button>
+        </Tooltip>
     )
 }
