@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { signInWithFacebook, signInWithGoogle, signOutUser } from "../redux/slices/userSlice";
-import { Box, Button, Divider, Grid2, Stack, TextField, Typography } from "@mui/material";
+import { signInWithFacebook, signInWithGoogle } from "../redux/slices/userSlice";
+import { Button, Divider, Grid2, Stack, TextField, Typography } from "@mui/material";
 import BaseComponent from "../components/BaseComponent/BaseComponent";
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -15,10 +15,6 @@ export default function SignIn(){
 
     const handleSignInWithFB = ()=>{
         dispatch(signInWithFacebook())
-    }
-
-    const handleSignOut = ()=>{
-        dispatch(signOutUser())
     }
 
     const handleSignIn = (event) =>{
