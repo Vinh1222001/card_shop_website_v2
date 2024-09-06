@@ -1,7 +1,7 @@
 import { Outlet, useLoaderData } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import SpeedDialContacts from "../../components/SpeedDial/SpeedDialContacts";
 
 export default function MainLayout() {
@@ -10,19 +10,19 @@ export default function MainLayout() {
 
     return(
         <>
-            <header>
+            <Box component={"header"}>
                 <Header globalPaddingX={globalPaddingX}/>
-            </header>
-            <Box sx={{ position: 'relative', paddingBottom: 5}}>
+            </Box>
+            <Container disableGutters fixed maxWidth={false} sx={{ position: 'relative', paddingBottom: 5}} component={"main"}>
 
                 <Outlet context={globalPaddingX}/>
 
                 <SpeedDialContacts/>
-            </Box>
-            <footer>
+            </Container>
+            <Box component={"footer"}>
 
                 <Footer globalPaddingX={globalPaddingX}/>
-            </footer>
+            </Box>
         </>
     )
 }

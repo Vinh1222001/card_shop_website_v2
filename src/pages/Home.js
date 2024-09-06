@@ -1,5 +1,4 @@
 import { Box, Stack } from "@mui/material";
-import { useOutletContext } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getAllHotProductsSelector } from "../redux/selectors/hotProductsSelector";
 import { ROUTE_LIST, routeBuilder } from "../routes/routeBuilder";
@@ -12,6 +11,7 @@ import HorizontalProductList from "../components/ProductList/HorizontalProductLi
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import FiberNewIcon from '@mui/icons-material/FiberNew';
 import BallotIcon from '@mui/icons-material/Ballot';
+import BaseComponent from "../components/BaseComponent/BaseComponent";
 
 export default function Home(){
 
@@ -20,14 +20,6 @@ export default function Home(){
     const newProductList = useSelector(getNewProductsSelector)  
     
     const releasedProductList = useSelector(getAllReleasedProductsSelector) 
-    // console.log(releasedProductList);
-    
-    const globalPaddingX = useOutletContext()
-
-    const componentBackgroundStyle ={
-        backgroundColor: "white",
-        boxShadow: 1,
-    }
 
     return (
         <Stack 
@@ -38,27 +30,27 @@ export default function Home(){
                 <BannerSlider/>
             </Box>
 
-            <Stack sx={{paddingInline: globalPaddingX}} spacing={2}>
+            <Stack spacing={2}>
 
-                <Box id="hot-product-wrapper" sx={componentBackgroundStyle}>
+                <BaseComponent id="hot-product-wrapper">
                     <HorizontalProductList
                         productList={hotProductList}
                         icon={<WhatshotIcon sx={{color: "red"}}/>}
                         title= {"Sản phẩm Hot"}
                         link={routeBuilder(ROUTE_LIST.HOT_PRODUCTS)}
                     />
-                </Box>
+                </BaseComponent>
 
-                <Box id="new-product-wrapper" sx={componentBackgroundStyle}>
+                <BaseComponent id="new-product-wrapper">
                     <HorizontalProductList
                         productList={newProductList}
                         icon={<FiberNewIcon/>}
                         title={"Sản phẩm mới"}
                         link = {routeBuilder(ROUTE_LIST.NEW_PRODUCTS)}
                     />
-                </Box>
+                </BaseComponent>
                 
-                <Box id="table-product-list-wrapper" sx={componentBackgroundStyle}>
+                <BaseComponent id="table-product-list-wrapper">
                     <TableProductList
                         productList={releasedProductList}
                         icon={<BallotIcon/>}
@@ -67,7 +59,7 @@ export default function Home(){
                         link = {routeBuilder(ROUTE_LIST.PRODUCTS_LIST)}
                         pagination={false}
                     />
-                </Box>
+                </BaseComponent>
             </Stack>
 
         </Stack>

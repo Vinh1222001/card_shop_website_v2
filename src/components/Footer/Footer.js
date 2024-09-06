@@ -2,6 +2,7 @@ import { Avatar, Box, Divider, Grid2, Link, Stack, Typography } from "@mui/mater
 import { useSelector } from "react-redux";
 import { getContactListSelector, getServiceListSelector, getSocialMediaListSelector, getStoreInfoListSelector } from "../../redux/selectors/contactsSelector";
 import { renderIcon } from "../../commonFunctions/iconFunctions";
+import BaseComponent from "../BaseComponent/BaseComponent";
 
 const titileStyle = {
     variant: "h6",
@@ -51,7 +52,7 @@ const imgLinkThirstProvider = {
     ]
 }
 
-export default function Footer({globalPaddingX}) {
+export default function Footer() {
 
     const globalPaddingY = "1em"
 
@@ -84,8 +85,6 @@ export default function Footer({globalPaddingX}) {
             <Box 
                 display={"flex"} 
                 justifyContent="center" 
-                paddingInline={globalPaddingX}
-
             >
                 <Box
                     display={"flex"} 
@@ -102,7 +101,7 @@ export default function Footer({globalPaddingX}) {
                 </Box>
             </Box>
             <Divider sx={{backgroundColor: "primary.light"}}/>
-            <Box paddingInline={globalPaddingX}>
+            <BaseComponent backgroundColor="none" boxShadow={"none"}>
                 <Grid2 container spacing={2}>
                     <Grid2  size={4}>
                         <Stack
@@ -272,7 +271,7 @@ export default function Footer({globalPaddingX}) {
                     </Grid2>
                 </Grid2>
                 
-            </Box>
+            </BaseComponent>
         </Stack>
             
         

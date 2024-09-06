@@ -3,25 +3,31 @@ import NavigationBar from "./NavigationBar";
 import HotNews from "./HotNews";
 import { blueGrey } from "@mui/material/colors";
 import Breadcrumb from "./Breadcrumb";
+import BaseComponent from "../BaseComponent/BaseComponent";
 
 export default function Header({globalPaddingX}) {
 
     // console.log(userInfo);
     
     return(
-
         <Stack>
 
-            <Box paddingBlock={1} paddingInline={globalPaddingX} bgcolor="primary.main">
-                <NavigationBar/>
+            <Box bgcolor="primary.main">
+                <BaseComponent backgroundColor="none" boxShadow={"none"}>                
+                    <NavigationBar/>
+                </BaseComponent>
             </Box>
 
             <Box bgcolor={blueGrey[100]} paddingBlock={1}>
-                <HotNews/>
+                <BaseComponent backgroundColor="none" boxShadow={"none"}>    
+                    <HotNews/>
+                </BaseComponent>
             </Box>
 
-            <Box paddingInline={globalPaddingX}>
-                <Breadcrumb/>
+            <Box>
+                <BaseComponent backgroundColor="none" boxShadow={"none"}> 
+                    <Breadcrumb/>
+                </BaseComponent>
             </Box>
 
         </Stack>

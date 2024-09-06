@@ -20,7 +20,6 @@ const routes = createBrowserRouter([
                 loader: ()=>{
                     return{
                         name: "Trang chủ",
-                        paddingX: "10%"
                     }
                 },
                 children:[
