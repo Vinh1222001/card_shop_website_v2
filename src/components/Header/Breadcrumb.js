@@ -11,7 +11,7 @@ export default function Breadcrumb() {
   // console.log(crumbs);
 
   return (
-    <Breadcrumbs separator="›" aria-label="breadcrumb" maxItems={5}>
+    <Breadcrumbs separator="›" aria-label="breadcrumb" maxItems={5}  sx={{marginBottom: 2}}>
 
       {crumbs.length > 1 ? 
       

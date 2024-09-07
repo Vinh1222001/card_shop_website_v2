@@ -28,6 +28,49 @@ export const userSlice = createSlice({
             state.user = action.payload.user;
             
         }
+    },
+    extraReducers: builder => {
+        
+        // Sign in with Google
+        builder.addCase(signInWithGoogle.pending, state =>{
+            state.status = USER_MIDDLEWARE_STATUSES.PENDING
+        })
+        .addCase(signInWithGoogle.fulfilled, state =>{
+            state.status = USER_MIDDLEWARE_STATUSES.FULFILLED
+        })
+
+        // Sign in with Facebook
+        .addCase(signInWithFacebook.pending, state =>{
+            state.status = USER_MIDDLEWARE_STATUSES.PENDING
+        })
+        .addCase(signInWithFacebook.fulfilled, state =>{
+            state.status = USER_MIDDLEWARE_STATUSES.FULFILLED
+        })
+
+        // Sign In with email and password
+        .addCase(signInWithEmailPassword.pending, state =>{
+            state.status = USER_MIDDLEWARE_STATUSES.PENDING
+        })
+        .addCase(signInWithEmailPassword.fulfilled, state =>{
+            state.status = USER_MIDDLEWARE_STATUSES.FULFILLED
+        })
+
+        // Sign Up with email and password
+        .addCase(signUpWithEmailPassword.pending, state =>{
+            state.status = USER_MIDDLEWARE_STATUSES.PENDING
+        })
+        .addCase(signUpWithEmailPassword.fulfilled, state =>{
+            state.status = USER_MIDDLEWARE_STATUSES.FULFILLED
+        })
+
+        // Sign out
+        .addCase(signOutUser.pending, state =>{
+            state.status = USER_MIDDLEWARE_STATUSES.PENDING
+
+        })
+        .addCase(signOutUser.fulfilled, state =>{
+            state.status = USER_MIDDLEWARE_STATUSES.FULFILLED
+        })
     }
 })
 
@@ -39,12 +82,15 @@ export const signInWithFacebook = createAsyncThunk("signInWithFacebook", ()=>{
     signInWithThirdProvider(PROVIDER_LIST.FACEBOOK)
 })
 
-export const signInWithEmailPassword = createAsyncThunk("signInWithGoogle", (userEmail, userPassword)=>{
-    signIn(userEmail, userPassword)
+export const signInWithEmailPassword = createAsyncThunk("signInWithEmailPassword", (user)=>{
+    signIn(user)
 })
 
-export const signUpWithEmailPassword = createAsyncThunk("signInWithGoogle", (userEmail, userPassword)=>{
-    signUp(userEmail, userPassword)
+export const signUpWithEmailPassword = createAsyncThunk("signUpWithEmailPassword", (user)=>{
+
+    // console.log(user);
+    
+    signUp(user)
 })
 
 export const signOutUser = createAsyncThunk("signOutUser", ()=>{
