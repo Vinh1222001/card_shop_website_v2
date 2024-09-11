@@ -19,6 +19,7 @@ export const PROVIDER_LIST = {
 export const signInWithThirdProvider = async (providerName)=>{
   const { data, error } = await supabase.auth.signInWithOAuth({
       provider : providerName,
+      role: "client",
       options: {
         redirectTo: 'http://localhost:3000',
         
