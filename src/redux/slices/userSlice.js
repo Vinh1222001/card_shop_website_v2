@@ -18,7 +18,8 @@ export const userSlice = createSlice({
             avatar:"",
             role: "",
             last_sign_in_at:"",
-            provider: ""
+            provider: "",
+            role: ""
         }
         
     }, 

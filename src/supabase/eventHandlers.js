@@ -19,7 +19,8 @@ export const setPersistAuthLocalStorage = (session) =>{
                 avatar: session.user.user_metadata.avatar_url,
                 role: session.user.role,
                 last_sign_in_at: session.user.last_sign_in_at,
-                provider: session.user.app_metadata.provider
+                provider: session.user.app_metadata.provider, 
+                role: session.user.user_metadata.role
             },
           },
           token: session.access_token,

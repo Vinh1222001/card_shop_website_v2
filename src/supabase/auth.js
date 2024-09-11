@@ -21,7 +21,12 @@ export const signInWithThirdProvider = async (providerName)=>{
       provider : providerName,
       options: {
         redirectTo: 'http://localhost:3000',
-        
+        data:{
+          user_metadata:{
+
+            role: "client"
+          }
+        }
       },
     })
     
@@ -39,9 +44,9 @@ export const signIn = async (user) =>{
     }
   })
 
-  if(data) {
-    window.location.href = process.env.REACT_APP_HOME_URL
-  }
+  // if(data) {
+  //   window.location.href = process.env.REACT_APP_HOME_URL
+  // }
   return checkError(data, error)
 }
 
@@ -74,4 +79,15 @@ export const signOut = async()=>{
 
   return checkError(data, error)
 
+}
+
+export const updateClientRole =  async () =>{
+
+  const {data, error} = supabase.auth.updateUser({
+    data:{
+      role: "client"
+    }
+  })
+
+  checkError(data, error)
 }
