@@ -1,4 +1,12 @@
-import { Stack } from "@mui/material";
+import { Container, Stack, styled } from "@mui/material";
+
+const CustomContainer = styled(Container)(({theme})=>({
+    [theme.breakpoints.up('xl')]:{
+        maxWidth: "100%",
+        paddingInline : "10%"
+    }
+}))
+
 
 export default function BaseComponent({
     children,
@@ -9,7 +17,7 @@ export default function BaseComponent({
     boxShadow=1
 }) {
     return(
-        <Stack 
+        <CustomContainer 
             id={id}
             className={className}
             sx={{
@@ -28,6 +36,6 @@ export default function BaseComponent({
 
                 {children}
             </Stack>
-        </Stack>
+        </CustomContainer>
     )
 }

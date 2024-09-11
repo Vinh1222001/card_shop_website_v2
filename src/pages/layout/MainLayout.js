@@ -13,7 +13,7 @@ export default function MainLayout() {
             <Box component={"header"}>
                 <Header globalPaddingX={globalPaddingX}/>
             </Box>
-            <Container disableGutters fixed maxWidth={false} sx={{ position: 'relative', paddingBottom: 5}} component={"main"}>
+            <Container disableGutters maxWidth={false} sx={{ position: 'relative', paddingBottom: 5}} component={"main"}>
 
                 <Outlet context={globalPaddingX}/>
 

@@ -21,6 +21,7 @@ const theme = createTheme({
       }
     }
   },
+  
   palette:{
     primary:{
       main: violet,
@@ -39,7 +40,8 @@ const theme = createTheme({
       dark: 0.7
     },
     // background: blueGrey[800]
-  }
+  },
+
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

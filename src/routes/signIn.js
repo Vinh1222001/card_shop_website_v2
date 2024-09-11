@@ -1,9 +1,9 @@
 import { crumbCreator } from "../commonFunctions/crumbCreator"
-import SignIn from "../pages/SignIn"
+import SignInAndSignUp from "../pages/SignInAndSignUp"
 
 export const signInRoutes = {
     path: process.env.REACT_APP_SIGN_IN_URL,
-    element: <SignIn/>,
+    element: <SignInAndSignUp/>,
     handle: crumbCreator(),
     loader: ()=>{
         return{

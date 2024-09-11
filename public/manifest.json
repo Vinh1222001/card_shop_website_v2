@@ -6,6 +6,11 @@
       "src": "/Logo/logo_lentilab-01.png",
       "type": "image/png",
       "sizes": "1098x1097"
+    },
+    {
+      "src": "/online-shop.jpg",
+      "type": "image/jpg",
+      "sizes": "5000x2924"
     }
   ],
   "start_url": ".",

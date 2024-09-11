@@ -22,7 +22,12 @@ export const signInWithThirdProvider = async (providerName)=>{
       role: "client",
       options: {
         redirectTo: 'http://localhost:3000',
-        
+        data:{
+          user_metadata:{
+
+            role: "client"
+          }
+        }
       },
     })
     
@@ -31,21 +36,38 @@ export const signInWithThirdProvider = async (providerName)=>{
 } 
 
 
-export const signIn = async (userEmail, userPassword) =>{
+export const signIn = async (user) =>{
   const { data, error } = await supabase.auth.signInWithPassword({
-    email: userEmail,
-    password: userPassword,
+    email: user.email,
+    password: user.password,
+    options: {
+      redirectTo: process.env.REACT_APP_HOME_URL
+    }
   })
 
+  // if(data) {
+  //   window.location.href = process.env.REACT_APP_HOME_URL
+  // }
   return checkError(data, error)
 }
 
-export const signUp = async (userEmail, userPassword) =>{
-  const { data, error } = await supabase.auth.signUp({
-    email: userEmail,
-    password: userPassword,
-  })
+export const signUp = async (user) =>{
 
+  // console.log(user);
+
+  const { data, error } = await supabase.auth.signUp(
+    {
+      email: user.email,
+      password: user.password,
+      options: {
+        data: {
+          full_name: user.name,
+          name: user.name
+        }
+      }
+    }
+  )
+  
   return checkError(data, error)
 }
 
@@ -58,4 +80,15 @@ export const signOut = async()=>{
 
   return checkError(data, error)
 
+}
+
+export const updateClientRole =  async () =>{
+
+  const {data, error} = supabase.auth.updateUser({
+    data:{
+      role: "client"
+    }
+  })
+
+  checkError(data, error)
 }
