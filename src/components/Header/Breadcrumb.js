@@ -11,10 +11,10 @@ export default function Breadcrumb() {
   // console.log(crumbs);
 
   return (
+    crumbs.length > 1 &&
     <Breadcrumbs separator="›" aria-label="breadcrumb" maxItems={5}  sx={{marginBottom: 2}}>
 
-      {crumbs.length > 1 ? 
-      
+      {      
         crumbs.map((crumb, index)=>{
           return(
 
@@ -23,8 +23,7 @@ export default function Breadcrumb() {
             </Link>
           )
         }) 
-      
-      : ""}
+      }
     </Breadcrumbs>
   );
 }

@@ -1,4 +1,4 @@
-import { Card, Stack, CardMedia, CardContent, CardActions, Typography, Chip, Divider, Button } from "@mui/material"
+import { Card, Stack, CardMedia, CardContent, CardActions, Typography, Chip, Divider, Button, Tooltip } from "@mui/material"
 import { ROUTE_LIST, routeBuilder } from "../../routes/routeBuilder";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useNavigate } from "react-router-dom";
@@ -21,10 +21,15 @@ function DisplayOptionComponent(
             <Typography variant="body2" sx={{ color: 'text.secondary', whiteSpace: "nowrap" }} >
                 {titile}:
             </Typography>
-            <Stack direction={"row"} flexWrap={"wrap"} gap={1}>
+            <Stack direction={"row"}  gap={1} flexWrap={"wrap"}>
                 {data[attribute].split(', ').map((item, index)=>{
                     return(
-                        <Chip label={item} key={`${attribute}-${index}`} size="small"/>
+
+                        <Chip 
+                            label={item} 
+                            key={`${attribute}-${index}`} 
+                            size="small" 
+                        />
                     )
                 })}
             </Stack>
@@ -49,12 +54,12 @@ export default function ProductCard({
             <Stack>
 
                 <CardMedia
-                    sx={{ minHeight: 250 }}
+                    sx={{ minHeight: 200 }}
                     image={product.images.imgSrc}
                     title={product.name}
                 />
                 <CardContent sx={{padding:"5px", ":last-child":{paddingBottom: "0px"}}}>
-                    <Typography gutterBottom variant="h5" component="div" >
+                    <Typography gutterBottom variant="h6" component="div" >
                         {product.name}
                     </Typography>
 

@@ -27,7 +27,7 @@ export default function HorizontalProductList({
                     <Stack direction={"row"} width={"fit-content"} spacing={1} alignItems={"stretch"}>
                         {productList.map((product, index)=>{
                             return (
-                                <Box key={`product-card-${index}`} minWidth={300} display={"flex"} alignItems={"stretch"}>
+                                <Box key={`product-card-${index}`} minWidth={300} display={"flex"} alignItems={"stretch"} maxWidth={"20em"}>
 
                                     <ProductCard product={product} />
                                 </Box>

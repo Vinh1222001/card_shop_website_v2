@@ -19,16 +19,6 @@ export const PROVIDER_LIST = {
 export const signInWithThirdProvider = async (providerName)=>{
   const { data, error } = await supabase.auth.signInWithOAuth({
       provider : providerName,
-      role: "client",
-      options: {
-        redirectTo: 'http://localhost:3000',
-        data:{
-          user_metadata:{
-
-            role: "client"
-          }
-        }
-      },
     })
     
   return checkError(data, error)
@@ -45,9 +35,15 @@ export const signIn = async (user) =>{
     }
   })
 
-  // if(data) {
-  //   window.location.href = process.env.REACT_APP_HOME_URL
-  // }
+  if(data){
+    // window.location.href = process.env.REACT_APP_HOME_URL
+
+    if(data.user.role !== "customer"){
+      return signOut()
+    }
+    
+  }
+
   return checkError(data, error)
 }
 
@@ -62,7 +58,6 @@ export const signUp = async (user) =>{
       options: {
         data: {
           full_name: user.name,
-          name: user.name
         }
       }
     }
@@ -85,10 +80,18 @@ export const signOut = async()=>{
 export const updateClientRole =  async () =>{
 
   const {data, error} = supabase.auth.updateUser({
+    role: "client",
     data:{
       role: "client"
     }
   })
 
   checkError(data, error)
+}
+
+export const getUser = async () =>{
+  const { data: { user } } = await supabase.auth.getUser()
+  // console.log(user);
+  return user
+  
 }

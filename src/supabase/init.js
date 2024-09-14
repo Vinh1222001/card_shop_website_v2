@@ -1,8 +1,5 @@
-
 import { createClient } from '@supabase/supabase-js'
 import { createPersistAuthLocalStorage, resetPersistAuthLocalStorage, setPersistAuthLocalStorage } from './eventHandlers';
-import { updateClientRole } from './auth';
-
 
 const supabaseUrl = 'https://jhaukacezyclslzmlkwv.supabase.co'
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY
@@ -15,23 +12,16 @@ export default supabase;
 
 supabase.auth.onAuthStateChange((event, session) => {  
 
-  
   if (event === 'INITIAL_SESSION') {
-              
+    
   } else if (event === 'SIGNED_IN') {
 
     // console.log("In Signed in session", event, session.user);
     createPersistAuthLocalStorage()
 
-    if(session){
-
-      if( Object.hasOwn(session.user.user_metadata, "role") ){
-
-        updateClientRole()
-      }
-
+    if(session){      
+      
       setPersistAuthLocalStorage(session)
-
     }
     
   } else if (event === 'SIGNED_OUT') {
